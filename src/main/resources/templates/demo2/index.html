@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Demo2</title>
+	</head>
+	<body>
+		<h3> index </h3>
+		<table border="1" cellpadding="2" cellspacing="2">
+			<thead>
+			<th> id</th>
+			<th> Tên Sản Phẩm</th>
+			<th> Ảnh Sản Phẩm</th>
+			<th> Ngày Tạo</th>
+			<th> Giá </th>
+			<th> Số Lượng</th>
+			<th> Tổng Tiền</th>
+			</thead>
+			<tbody>
+			<tr>
+				<td th:text="${product.id}"></td>
+				<td th:text="${product.name}"></td>
+				<td> <img th:src="@{'/assets/images/' + ${product.photo}}" width="120" height="100"> </td>
+				<td th:text="${#dates.format(product.created, 'dd/MM/yyyy')}"> </td>
+				<td th:text="${product.price}"></td>
+				<td th:text="${product.quantity}"></td>
+				<td th:text="${product.quantity * product.price}"></td>
+			</tr>	
+				
+			</tbody>
+			
+			
+		</table>
+		
+		
+	</body>
+</html>

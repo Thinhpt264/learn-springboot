@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Demo3</title>
+	</head>
+	<body>
+		MSG1 : <th:block th:text="${@demoService.Hello()}"></th:block>
+		
+		MSG1 : <th:block th:text="${@demoService.hi('Quy')}"></th:block>
+		MSG1 : <th:block th:text="${@caculateService.mul(24,22)}"></th:block>
+
+	</body>	
+</html>

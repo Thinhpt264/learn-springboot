@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Demo4</title>
+	</head>
+	<body>
+		
+		<h3>Form 1</h3>
+		<h3>Search By KeyWord</h3>
+		
+		<form method="get" th:action="@{/demo4/searchbykeyword}">
+			KeyWord <input type="text" name="keyword">
+			<button type="submit">Search</button>
+		</form>
+		 <h3>Form 2</h3>
+		<h3>Search By Prices</h3>
+		
+		<form method="get" th:action="@{/demo4/searchbyprices}">
+			Min <input type="text" name="min">
+			Max <input type="text" name="max">
+			<button type="submit">Search</button>
+		</form>
+		 <h3>Form 3</h3>
+		<h3>Login</h3>
+			<h3>Update 1</h3>
+		<form method="post" th:action="@{/demo4/update}">
+			Email1 <input type="text" name="emails"> 
+			<br>
+			Email2 <input type="text" name="emails"> 
+			<br>
+			Email3 <input type="text" name="emails"> 
+			<br>
+			<button type="submit">Login</button>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Demo4</title>
+	</head>
+	<body>
+		 <h3>welcome </h3>
+		<th:block th:text="${session.username}"></th:block>
+		
+		<a th:href="@{/account/logout}">Logout</a>
+	</body>
+</html>

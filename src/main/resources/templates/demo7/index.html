@@ -1,0 +1,194 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Demo7</title>
+		
+	</head>
+	<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+	<script>
+		$(document).ready(function() {
+			$('#btnclickme').click(function() {
+				$.ajax ({
+					type: 'GET',
+					url: '/ajax/ajax1',
+					success: function(data) {
+						$('#result1').html(data);
+					}
+				})
+			})
+			$('#btnclickme2').click(function() {
+				$.ajax ({
+					type: 'GET',
+					url: '/ajax/ajax2',
+					success: function(data) {
+						$('#result2').html(data);
+					}
+				})
+			})
+			$('#btnSearch2').click(function() {
+				var min = $('#min').val();
+				var max = $('#max').val();
+				$.ajax ({
+					type: 'GET',
+					url: '/ajax/ajax4',
+					data: {
+						min : min,
+						max : max
+					
+					},
+					success: function(data) {
+						$('#result4').html(data);
+					}
+				})
+			})
+			$('#btnLogin').click(function() {
+				var username = $('#username').val();
+				var password = $('#password').val();
+				$.ajax ({
+					type: 'POST',
+					url: '/ajax/login',
+					data: {
+						username : username,
+						password : password
+					
+					},
+					success: function(data) {
+						$('#result5').html(data);
+					}
+				})
+			})
+			$('#btnFind').click(function() {
+				
+				$.ajax ({
+					type: 'GET',
+					url: '/ajax/find',
+					success: function(product) {
+						$('#productId').html(product.id);
+						$('#productName').html(product.name);
+						$('#productCreated').html(product.created);
+						$('#productImage').html('<img src="/assets/images/' + product.photo + '" width="100px">');
+					}
+				})
+			})
+			$('#btnFindAll').click(function() {
+				
+				$.ajax ({
+					type: 'GET',
+					url: '/ajax/findAll',
+					success: function(products) {
+						var s = '';
+						for(var i = 0; i < products.length; i++) {
+							s+= '<tr>';
+							s+= '<td> ' + products[i].id + '</td>';
+							s+= '<td> ' + products[i].name + '</td>';
+							s+= '<td>  <img src="/assets/images/' +  products[i].photo + '" width="100px" </td>';
+							s+= '<td> ' + products[i].price + '</td>';
+							s+= '<td> ' + products[i].created + '</td>';
+ 						}
+ 						$('#tableProducts tbody').html(s);
+					}
+				})
+			})
+		})
+		
+	</script>
+	<body>
+		<h3>
+			Index7
+		</h3>
+		<fieldset>
+			<legend>Demo 1</legend>
+			<button id="btnclickme">Click Me</button>
+			<br>
+			<span id="result1"></span>
+			
+		</fieldset>
+		<fieldset>
+			<legend>Demo 2</legend>
+			<button id="btnclickme2">Click Me</button>
+			<br>
+			<span id="result2"></span>
+			
+		</fieldset>
+		<fieldset>
+			<legend>Demo 3</legend>
+			Keyword <input type="text" id="keyword">
+			<br>
+			<button id="btnSearch">Search</button>
+			<br>
+			<span id="result3"></span>
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend>Demo 4</legend>
+			Min <input type="text" id="min">
+			<br>
+			Max <input type="text" id="max">
+			<button id="btnSearch2">Search</button>
+			<br>
+			<span id="result4"></span>
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend>Login</legend>
+			Username <input type="text" id="username">
+			<br>
+			Password <input type="password" id="password">
+			<button id="btnLogin">Login</button>
+			<br>
+			<span id="result5"></span>
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend>Find</legend>
+			
+			<button id="btnFind">Find</button>
+			<br>
+			<table border="1">
+				<tr>
+					<td>Id</td>
+					<td id="productId"></td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td id="productName"></td>
+				</tr>
+				<tr>
+					<td>Created</td>
+					<td id="productCreated"></td>
+				</tr>
+				<tr>
+					<td>Image</td>
+					<td id="productImage"></td>
+				</tr>
+			</table>
+			
+		</fieldset>
+		
+		<fieldset>
+			<legend>FindAll</legend>
+			
+			<button id="btnFindAll">FindAll</button>
+			<br>
+			<table border="1" id="tableProducts">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Photo</th>
+						<th>Price</th>
+						<th>Created</th>
+					</tr>
+					
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+			
+		</fieldset>
+		
+	</body>
+</html>

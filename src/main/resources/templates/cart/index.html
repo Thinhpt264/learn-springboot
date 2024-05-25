@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title> Cart</title>
+	</head>
+	<body>
+		<h3>
+			Cart
+		</h3>
+		<a th:href="@{/product/index}">Continue Shopping</a>
+		<form method="post" th:action="@{/cart/update}">
+			<table border="1" cellpadding="2" cellspacing="2">
+				<thead>
+				
+				<th>Action</th>
+				<th> Tên Sản Phẩm</th>
+				<th> Ảnh Sản Phẩm</th>
+				<th> Ngày Tạo</th>
+				<th> Giá </th>
+				<th> Số Lượng
+					<th:block th:if="${session.cart != null && session.cart.size() > 0}">
+						<button type="submit">Update </button>
+					</th:block>
+					
+				</th>
+				<th> Tổng Tiền</th>
+			
+				</thead>
+				<tbody>
+					
+						
+					
+				<tr th:each="item, i : ${cart}">
+					
+					<td >
+						<a th:href="@{'/cart/remove/' + ${i.index}}">X</a>
+					</td>
+					<td>
+						<a th:href="@{'/product/detail/' + ${item.product.id}}" th:text="${item.product.name}"></a>
+					</td>
+					
+					<td>
+						<a th:href="@{'/product/details/' + ${item.product.id}}">
+							<img th:src="@{'/assets/images/' + ${item.product.photo}}" width="120" height="100"> 
+						</a> 
+					</td>
+					<td th:text="${#dates.format(item.product.created, 'dd/MM/yyyy')}"> </td>
+					<td th:text="${item.product.price}"></td>
+					<td >
+						<input type="number" min="1" name="quantities"
+						 th:value="${item.quantity}" style="width: 70px;">
+					</td>
+					
+					<td th:text="${item.quantity * item.product.price}"></td>
+					
+				</tr>
+				<tr>
+					<td colspan="6" align="right"> 
+						Total
+					</td>
+					<td> <th:block th:text="${total}"></th:block> </td>	
+				</tr>	
+				
+				</tbody>
+				
+				
+			</table>
+			
+		</form>
+		
+	</body>
+</html>
